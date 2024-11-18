@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>Parking App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <style>
+        .parking-spot {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="grid grid-cols-3 gap-4">
+        <div id="P1" class="parking-spot bg-green-500 text-white" onclick="park('P1')">P1</div>
+        <div id="P2" class="parking-spot bg-green-500 text-white" onclick="park('P2')">P2</div>
+        <div id="P3" class="parking-spot bg-green-500 text-white" onclick="park('P3')">P3</div>
+        <div id="P4" class="parking-spot bg-green-500 text-white" onclick="park('P4')">P4</div>
+        <div id="P5" class="parking-spot bg-green-500 text-white" onclick="park('P5')">P5</div>
+        <div id="P6" class="parking-spot bg-green-500 text-white" onclick="park('P6')">P6</div>
+        <div id="P7" class="parking-spot bg-green-500 text-white" onclick="park('P7')">P7</div>
+        <div id="P8" class="parking-spot bg-green-500 text-white" onclick="park('P8')">P8</div>
+        <div id="P9" class="parking-spot bg-green-500 text-white" onclick="park('P9')">P9</div>
+    </div>
+
+    <script>
+        function park(spotId) {
+            if (confirm("Do you want to park here?")) {
+                const spot = document.getElementById(spotId);
+                spot.classList.remove('bg-green-500');
+                spot.classList.add('bg-red-500');
+                startTimer(spot);
+            }
+        }
+
+        function startTimer(spot) {
+            let seconds = 0;
+            setInterval(() => {
+                seconds++;
+                spot.innerText = `${Math.floor(seconds / 60)}:${seconds % 60 < 10 ? '0' : ''}${seconds % 60}`;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
