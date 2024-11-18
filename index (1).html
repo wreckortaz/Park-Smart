@@ -1,41 +1,94 @@
-To run this web application on an iPhone, you can follow these steps:
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <style>
+        .parking-spot {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold text-center mb-8">Parking App</h1>
+        <div class="grid grid-cols-3 gap-4">
+            <div class="parking-spot bg-green-500 flex items-center justify-center text-white font-bold cursor-pointer" onclick="toggleParking(this)">
+                <span class="timer hidden">00:00:00</span>
+                <span class="park-text">Park</span>
+            </div>
+            <div class="parking-spot bg-green-500 flex items-center justify-center text-white font-bold cursor-pointer" onclick="toggleParking(this)">
+                <span class="timer hidden">00:00:00</span>
+                <span class="park-text">Park</span>
+            </div>
+            <div class="parking-spot bg-green-500 flex items-center justify-center text-white font-bold cursor-pointer" onclick="toggleParking(this)">
+                <span class="timer hidden">00:00:00</span>
+                <span class="park-text">Park</span>
+            </div>
+            <div class="parking-spot bg-green-500 flex items-center justify-center text-white font-bold cursor-pointer" onclick="toggleParking(this)">
+                <span class="timer hidden">00:00:00</span>
+                <span class="park-text">Park</span>
+            </div>
+            <div class="parking-spot bg-green-500 flex items-center justify-center text-white font-bold cursor-pointer" onclick="toggleParking(this)">
+                <span class="timer hidden">00:00:00</span>
+                <span class="park-text">Park</span>
+            </div>
+            <div class="parking-spot bg-green-500 flex items-center justify-center text-white font-bold cursor-pointer" onclick="toggleParking(this)">
+                <span class="timer hidden">00:00:00</span>
+                <span class="park-text">Park</span>
+            </div>
+            <div class="parking-spot bg-green-500 flex items-center justify-center text-white font-bold cursor-pointer" onclick="toggleParking(this)">
+                <span class="timer hidden">00:00:00</span>
+                <span class="park-text">Park</span>
+            </div>
+            <div class="parking-spot bg-green-500 flex items-center justify-center text-white font-bold cursor-pointer" onclick="toggleParking(this)">
+                <span class="timer hidden">00:00:00</span>
+                <span class="park-text">Park</span>
+            </div>
+            <div class="parking-spot bg-green-500 flex items-center justify-center text-white font-bold cursor-pointer" onclick="toggleParking(this)">
+                <span class="timer hidden">00:00:00</span>
+                <span class="park-text">Park</span>
+            </div>
+        </div>
+    </div>
 
-1. **Host the Web Application:**
-   - You need to host the HTML file on a web server. You can use services like GitHub Pages, Netlify, Vercel, or any other web hosting service.
+    <script>
+        function toggleParking(element) {
+            const timerElement = element.querySelector('.timer');
+            const parkTextElement = element.querySelector('.park-text');
+            if (element.classList.contains('bg-green-500')) {
+                element.classList.remove('bg-green-500');
+                element.classList.add('bg-red-500');
+                parkTextElement.classList.add('hidden');
+                timerElement.classList.remove('hidden');
+                startTimer(timerElement);
+            } else {
+                element.classList.remove('bg-red-500');
+                element.classList.add('bg-green-500');
+                parkTextElement.classList.remove('hidden');
+                timerElement.classList.add('hidden');
+                stopTimer(timerElement);
+            }
+        }
 
-2. **Access the Web Application on iPhone:**
-   - Once the web application is hosted, you will get a URL (e.g., `https://yourusername.github.io/your-repo`).
-   - Open the Safari browser on your iPhone.
-   - Enter the URL of your hosted web application in the address bar and press Enter.
+        function startTimer(timerElement) {
+            let seconds = 0;
+            timerElement.interval = setInterval(() => {
+                seconds++;
+                const hrs = Math.floor(seconds / 3600);
+                const mins = Math.floor((seconds % 3600) / 60);
+                const secs = seconds % 60;
+                timerElement.textContent = `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
 
-3. **Add to Home Screen (Optional):**
-   - If you want to add the web application to your iPhone's home screen for easy access, follow these steps:
-     - Open the web application in Safari.
-     - Tap the "Share" button (the square with an arrow pointing up).
-     - Scroll down and tap "Add to Home Screen."
-     - Enter a name for the shortcut and tap "Add."
-
-Here is a step-by-step guide to host your web application using GitHub Pages:
-
-### Hosting on GitHub Pages
-
-1. **Create a GitHub Repository:**
-   - Go to [GitHub](https://github.com) and log in to your account.
-   - Click on the "+" icon in the top right corner and select "New repository."
-   - Enter a repository name and description (optional).
-   - Choose "Public" and click "Create repository."
-
-2. **Upload Your HTML File:**
-   - In your new repository, click on "Add file" and select "Upload files."
-   - Upload your HTML file and click "Commit changes."
-
-3. **Enable GitHub Pages:**
-   - Go to the "Settings" tab of your repository.
-   - Scroll down to the "GitHub Pages" section.
-   - Under "Source," select the branch you want to use (usually `main` or `master`) and click "Save."
-   - You will see a URL where your web application is hosted (e.g., `https://yourusername.github.io/your-repo`).
-
-4. **Access the Web Application:**
-   - Open Safari on your iPhone and enter the URL of your hosted web application.
-
-By following these steps, you can easily run your web application on an iPhone.
+        function stopTimer(timerElement) {
+            clearInterval(timerElement.interval);
+            timerElement.textContent = '00:00:00';
+        }
+    </script>
+</body>
+</html>
